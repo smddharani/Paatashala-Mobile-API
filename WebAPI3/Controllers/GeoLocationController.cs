@@ -74,5 +74,11 @@ namespace WebAPI3.Controllers
                 return Json(e.ToString(), JsonRequestBehavior.AllowGet);
             }
         }
+
+        public JsonResult ShowLocation(long Routecode,long OrgId)
+        {
+            var ExactLocation = db.tblGPSDatas.Where(x => x.OrgId == OrgId && x.RouteCode == Routecode).OrderByDescending(o => o.Time).Take(1).Select(x => new { x.Latitude, x.Longitude }).FirstOrDefault();
+            return Json(ExactLocation,JsonRequestBehavior.AllowGet);
+        }
     }
 }
