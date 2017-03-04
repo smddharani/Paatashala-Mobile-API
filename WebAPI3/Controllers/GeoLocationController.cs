@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 
 namespace WebAPI3.Controllers
 {
@@ -12,7 +13,7 @@ namespace WebAPI3.Controllers
         // GET: GeoLocation
         public ActionResult Index()
         {
-            return View(); 
+            return View();
         }
         webSchoolContext db = new webSchoolContext();
         private DateTime ConvertToDateTime(string input)
@@ -28,14 +29,15 @@ namespace WebAPI3.Controllers
         public JsonResult GetRouteCode(long OrgId)
         {
             var Routes = db.tblRoutes.Where(x => x.OrgId == OrgId).Select(x => new { x.Id, x.RouteCode }).ToList();
-            return Json(new { Routes },JsonRequestBehavior.AllowGet);
+            return Json(new { Routes }, JsonRequestBehavior.AllowGet);
         }
-         
-        public JsonResult GetLocation(long Routecode, long OrgId, string Lattitude,string Longitude,string nowDateTime)
+
+        public JsonResult UpdateRouteLocation(long Routecode, long OrgId, string Lattitude, string Longitude)
         {
             try
             {
-                var datee = ConvertToDateTime(nowDateTime);
+                System.IO.File.AppendAllText(Server.MapPath("log.txt"), string.Format("{0} - Route:{1} Lat:{2} Long:{3}{4}", DateTime.Now, Routecode, Lattitude, Longitude, Environment.NewLine));
+                var datee = DateTime.Now;
                 db.tblGPSDatas.Add(new tblGPSData()
                 {
                     RouteCode = Routecode,
@@ -47,7 +49,7 @@ namespace WebAPI3.Controllers
                 db.SaveChanges();
                 return Json("Saved Successfully", JsonRequestBehavior.AllowGet);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return Json(e.ToString(), JsonRequestBehavior.AllowGet);
             }
@@ -75,10 +77,10 @@ namespace WebAPI3.Controllers
             }
         }
 
-        public JsonResult ShowLocation(long Routecode,long OrgId)
+        public JsonResult ShowLocation(long Routecode, long OrgId)
         {
             var ExactLocation = db.tblGPSDatas.Where(x => x.OrgId == OrgId && x.RouteCode == Routecode).OrderByDescending(o => o.Time).Take(1).Select(x => new { x.Latitude, x.Longitude }).FirstOrDefault();
-            return Json(ExactLocation,JsonRequestBehavior.AllowGet);
+            return Json(ExactLocation, JsonRequestBehavior.AllowGet);
         }
     }
 }
