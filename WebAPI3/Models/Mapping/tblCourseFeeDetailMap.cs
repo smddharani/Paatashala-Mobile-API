@@ -30,6 +30,7 @@ namespace WebAPI3.Models.Mapping
             this.Property(t => t.StandardRate).HasColumnName("StandardRate");
             this.Property(t => t.Amount).HasColumnName("Amount");
             this.Property(t => t.OrgId).HasColumnName("OrgId");
+            this.Property(t => t.isBilling).HasColumnName("isBilling");
 
             // Relationships
             this.HasRequired(t => t.tblBatch)

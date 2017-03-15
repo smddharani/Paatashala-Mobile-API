@@ -20,6 +20,7 @@ namespace WebAPI3.Models
         public Nullable<long> BillingType { get; set; }
         public Nullable<decimal> StandardRate { get; set; }
         public long OrgId { get; set; }
+        public Nullable<bool> isBilling { get; set; }
         public virtual ICollection<tblCourseFeeDetail> tblCourseFeeDetails { get; set; }
         public virtual tblFeeLedgerGroup tblFeeLedgerGroup { get; set; }
         public virtual tblOrg tblOrg { get; set; }

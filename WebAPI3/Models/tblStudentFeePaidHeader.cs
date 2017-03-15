@@ -21,6 +21,11 @@ namespace WebAPI3.Models
         public string PaymentDetails { get; set; }
         public Nullable<long> Bank { get; set; }
         public long OrgId { get; set; }
+        public string ReceiptNumber { get; set; }
+        public Nullable<bool> isBilling { get; set; }
+        public Nullable<long> BillingTemplateId { get; set; }
+        public string Narration { get; set; }
+        public Nullable<System.DateTime> DueDate { get; set; }
         public virtual tblBankDetail tblBankDetail { get; set; }
         public virtual ICollection<tblFeePaidDetail> tblFeePaidDetails { get; set; }
         public virtual tblFeePaymentMode tblFeePaymentMode { get; set; }

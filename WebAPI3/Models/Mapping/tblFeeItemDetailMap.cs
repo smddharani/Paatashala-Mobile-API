@@ -31,6 +31,7 @@ namespace WebAPI3.Models.Mapping
             this.Property(t => t.BillingType).HasColumnName("BillingType");
             this.Property(t => t.StandardRate).HasColumnName("StandardRate");
             this.Property(t => t.OrgId).HasColumnName("OrgId");
+            this.Property(t => t.isBilling).HasColumnName("isBilling");
 
             // Relationships
             this.HasOptional(t => t.tblFeeLedgerGroup)

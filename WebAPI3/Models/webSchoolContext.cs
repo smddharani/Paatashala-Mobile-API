@@ -40,6 +40,7 @@ namespace WebAPI3.Models
         public DbSet<tblBatchAdmission> tblBatchAdmissions { get; set; }
         public DbSet<tblBatchAdmissionArchive> tblBatchAdmissionArchives { get; set; }
         public DbSet<tblBatchAdmissionPast> tblBatchAdmissionPasts { get; set; }
+        public DbSet<tblBillingTemplate> tblBillingTemplates { get; set; }
         public DbSet<tblBlockAttributesCCE> tblBlockAttributesCCEs { get; set; }
         public DbSet<tblBlockCCE> tblBlockCCEs { get; set; }
         public DbSet<tblBranch> tblBranches { get; set; }
@@ -74,6 +75,8 @@ namespace WebAPI3.Models
         public DbSet<tblExamMark> tblExamMarks { get; set; }
         public DbSet<tblExamSchedule> tblExamSchedules { get; set; }
         public DbSet<tblExamType> tblExamTypes { get; set; }
+        public DbSet<tblExpenseCategory> tblExpenseCategories { get; set; }
+        public DbSet<tblExpenseDetail> tblExpenseDetails { get; set; }
         public DbSet<tblFeeInstallmentDetail> tblFeeInstallmentDetails { get; set; }
         public DbSet<tblFeeItemDetail> tblFeeItemDetails { get; set; }
         public DbSet<tblFeeLedgerGroup> tblFeeLedgerGroups { get; set; }
@@ -212,6 +215,7 @@ namespace WebAPI3.Models
             modelBuilder.Configurations.Add(new tblBatchAdmissionMap());
             modelBuilder.Configurations.Add(new tblBatchAdmissionArchiveMap());
             modelBuilder.Configurations.Add(new tblBatchAdmissionPastMap());
+            modelBuilder.Configurations.Add(new tblBillingTemplateMap());
             modelBuilder.Configurations.Add(new tblBlockAttributesCCEMap());
             modelBuilder.Configurations.Add(new tblBlockCCEMap());
             modelBuilder.Configurations.Add(new tblBranchMap());
@@ -246,6 +250,8 @@ namespace WebAPI3.Models
             modelBuilder.Configurations.Add(new tblExamMarkMap());
             modelBuilder.Configurations.Add(new tblExamScheduleMap());
             modelBuilder.Configurations.Add(new tblExamTypeMap());
+            modelBuilder.Configurations.Add(new tblExpenseCategoryMap());
+            modelBuilder.Configurations.Add(new tblExpenseDetailMap());
             modelBuilder.Configurations.Add(new tblFeeInstallmentDetailMap());
             modelBuilder.Configurations.Add(new tblFeeItemDetailMap());
             modelBuilder.Configurations.Add(new tblFeeLedgerGroupMap());

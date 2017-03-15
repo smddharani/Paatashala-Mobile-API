@@ -10,6 +10,7 @@ namespace WebAPI3.Models
         public long FeeItemId { get; set; }
         public decimal Amount { get; set; }
         public long OrgId { get; set; }
+        public Nullable<bool> isBilling { get; set; }
         public virtual tblFeeItemDetail tblFeeItemDetail { get; set; }
         public virtual tblOrg tblOrg { get; set; }
         public virtual tblStudentFeePaidHeader tblStudentFeePaidHeader { get; set; }

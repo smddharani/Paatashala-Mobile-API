@@ -3,31 +3,24 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace WebAPI3.Models.Mapping
 {
-    public class tblFeePaymentModeMap : EntityTypeConfiguration<tblFeePaymentMode>
+    public class tblExpenseCategoryMap : EntityTypeConfiguration<tblExpenseCategory>
     {
-        public tblFeePaymentModeMap()
+        public tblExpenseCategoryMap()
         {
             // Primary Key
             this.HasKey(t => t.Id);
 
             // Properties
-            this.Property(t => t.Name)
-                .HasMaxLength(500);
-
-            this.Property(t => t.Description)
-                .HasMaxLength(500);
-
             // Table & Column Mappings
-            this.ToTable("tblFeePaymentMode");
+            this.ToTable("tblExpenseCategory");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Name).HasColumnName("Name");
             this.Property(t => t.Description).HasColumnName("Description");
             this.Property(t => t.OrgId).HasColumnName("OrgId");
-            this.Property(t => t.isBilling).HasColumnName("isBilling");
 
             // Relationships
-            this.HasRequired(t => t.tblOrg)
-                .WithMany(t => t.tblFeePaymentModes)
+            this.HasOptional(t => t.tblOrg)
+                .WithMany(t => t.tblExpenseCategories)
                 .HasForeignKey(d => d.OrgId);
 
         }

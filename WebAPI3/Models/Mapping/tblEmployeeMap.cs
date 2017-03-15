@@ -101,6 +101,7 @@ namespace WebAPI3.Models.Mapping
             this.Property(t => t.PermanentArea).HasColumnName("PermanentArea");
             this.Property(t => t.HasLoginAccess).HasColumnName("HasLoginAccess");
             this.Property(t => t.OrgId).HasColumnName("OrgId");
+            this.Property(t => t.EmployeeSignature).HasColumnName("EmployeeSignature");
 
             // Relationships
             this.HasOptional(t => t.tblDepartment)

@@ -17,6 +17,12 @@ namespace WebAPI3.Models.Mapping
             this.Property(t => t.PaymentDetails)
                 .HasMaxLength(500);
 
+            this.Property(t => t.ReceiptNumber)
+                .HasMaxLength(50);
+
+            this.Property(t => t.Narration)
+                .HasMaxLength(500);
+
             // Table & Column Mappings
             this.ToTable("tblStudentFeePaidHeader");
             this.Property(t => t.Id).HasColumnName("Id");
@@ -30,6 +36,11 @@ namespace WebAPI3.Models.Mapping
             this.Property(t => t.PaymentDetails).HasColumnName("PaymentDetails");
             this.Property(t => t.Bank).HasColumnName("Bank");
             this.Property(t => t.OrgId).HasColumnName("OrgId");
+            this.Property(t => t.ReceiptNumber).HasColumnName("ReceiptNumber");
+            this.Property(t => t.isBilling).HasColumnName("isBilling");
+            this.Property(t => t.BillingTemplateId).HasColumnName("BillingTemplateId");
+            this.Property(t => t.Narration).HasColumnName("Narration");
+            this.Property(t => t.DueDate).HasColumnName("DueDate");
 
             // Relationships
             this.HasOptional(t => t.tblBankDetail)

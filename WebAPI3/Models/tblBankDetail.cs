@@ -13,6 +13,7 @@ namespace WebAPI3.Models
         public long Id { get; set; }
         public string Name { get; set; }
         public long OrgId { get; set; }
+        public Nullable<bool> isBilling { get; set; }
         public virtual tblOrg tblOrg { get; set; }
         public virtual ICollection<tblStudentFeePaidHeader> tblStudentFeePaidHeaders { get; set; }
     }

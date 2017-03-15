@@ -17,10 +17,6 @@ namespace WebAPI3.Models.Mapping
             this.Property(t => t.Channel)
                 .HasMaxLength(500);
 
-            this.Property(t => t.ChannelInfo)
-                .IsFixedLength()
-                .HasMaxLength(10);
-
             this.Property(t => t.Remarks)
                 .HasMaxLength(500);
 
@@ -28,16 +24,14 @@ namespace WebAPI3.Models.Mapping
             this.ToTable("tblLeadFollowUp");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.StudentId).HasColumnName("StudentId");
-            this.Property(t => t.CreationDate).HasColumnName("CreationDate");
             this.Property(t => t.CreatedBy).HasColumnName("CreatedBy");
             this.Property(t => t.AssignTo).HasColumnName("AssignTo");
             this.Property(t => t.Explanation).HasColumnName("Explanation");
             this.Property(t => t.FollowupTime).HasColumnName("FollowupTime");
             this.Property(t => t.Channel).HasColumnName("Channel");
-            this.Property(t => t.ChannelInfo).HasColumnName("ChannelInfo");
             this.Property(t => t.Remarks).HasColumnName("Remarks");
-            this.Property(t => t.IsDismissed).HasColumnName("IsDismissed");
             this.Property(t => t.OrgId).HasColumnName("OrgId");
+            this.Property(t => t.isDismissed).HasColumnName("isDismissed");
 
             // Relationships
             this.HasOptional(t => t.tblEmployee)

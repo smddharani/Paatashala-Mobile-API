@@ -180,8 +180,10 @@
     <Compile Include="Controllers\HolidayController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomeworkController.cs" />
+    <Compile Include="Controllers\ParentNotificatonController.cs" />
     <Compile Include="Controllers\ParentRegistrationController.cs" />
     <Compile Include="Controllers\PersonalDetailController.cs" />
+    <Compile Include="Controllers\SampleLoginController.cs" />
     <Compile Include="Controllers\SchoolController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\SubjectsController.cs" />
@@ -197,6 +199,7 @@
     <Compile Include="HelperObject\CustomResponse.cs" />
     <Compile Include="Model Class\Assesment.cs" />
     <Compile Include="Model Class\AttendanceEntry.cs" />
+    <Compile Include="Model Class\DuplicateAttendance.cs" />
     <Compile Include="Model Class\Exam.cs" />
     <Compile Include="Model Class\Faculty.cs" />
     <Compile Include="Model Class\Fees.cs" />
@@ -229,6 +232,7 @@
     <Compile Include="Models\Mapping\tblBatchAdmissionMap.cs" />
     <Compile Include="Models\Mapping\tblBatchAdmissionPastMap.cs" />
     <Compile Include="Models\Mapping\tblBatchMap.cs" />
+    <Compile Include="Models\Mapping\tblBillingTemplateMap.cs" />
     <Compile Include="Models\Mapping\tblBlockAttributesCCEMap.cs" />
     <Compile Include="Models\Mapping\tblBlockCCEMap.cs" />
     <Compile Include="Models\Mapping\tblBranchMap.cs" />
@@ -263,6 +267,8 @@
     <Compile Include="Models\Mapping\tblExamMarkMap.cs" />
     <Compile Include="Models\Mapping\tblExamScheduleMap.cs" />
     <Compile Include="Models\Mapping\tblExamTypeMap.cs" />
+    <Compile Include="Models\Mapping\tblExpenseCategoryMap.cs" />
+    <Compile Include="Models\Mapping\tblExpenseDetailMap.cs" />
     <Compile Include="Models\Mapping\tblFeeInstallmentDetailMap.cs" />
     <Compile Include="Models\Mapping\tblFeeItemDetailMap.cs" />
     <Compile Include="Models\Mapping\tblFeeLedgerGroupMap.cs" />
@@ -397,6 +403,7 @@
     <Compile Include="Models\tblBatchAdmission.cs" />
     <Compile Include="Models\tblBatchAdmissionArchive.cs" />
     <Compile Include="Models\tblBatchAdmissionPast.cs" />
+    <Compile Include="Models\tblBillingTemplate.cs" />
     <Compile Include="Models\tblBlockAttributesCCE.cs" />
     <Compile Include="Models\tblBlockCCE.cs" />
     <Compile Include="Models\tblBranch.cs" />
@@ -431,6 +438,8 @@
     <Compile Include="Models\tblExamMark.cs" />
     <Compile Include="Models\tblExamSchedule.cs" />
     <Compile Include="Models\tblExamType.cs" />
+    <Compile Include="Models\tblExpenseCategory.cs" />
+    <Compile Include="Models\tblExpenseDetail.cs" />
     <Compile Include="Models\tblFeeInstallmentDetail.cs" />
     <Compile Include="Models\tblFeeItemDetail.cs" />
     <Compile Include="Models\tblFeeLedgerGroup.cs" />

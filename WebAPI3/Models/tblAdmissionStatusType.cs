@@ -12,6 +12,7 @@ namespace WebAPI3.Models
 
         public long Id { get; set; }
         public string Name { get; set; }
+        public Nullable<bool> isLead { get; set; }
         public virtual ICollection<tblStudentRegistration> tblStudentRegistrations { get; set; }
     }
 }

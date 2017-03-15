@@ -28,18 +28,12 @@ namespace WebAPI3.Models
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public Nullable<long> StudentId { get; set; }
-        public string FatherTitle { get; set; }
         public string FatherName { get; set; }
         public string FatherEmail { get; set; }
-        public string FatherContactNo { get; set; }
         public Nullable<System.DateTime> FatherDOB { get; set; }
-        public string FatherOccupation { get; set; }
-        public string MotherTitle { get; set; }
         public string MotherName { get; set; }
         public string MotherEmail { get; set; }
-        public string MotherContactNo { get; set; }
         public Nullable<System.DateTime> MotherDOB { get; set; }
-        public string MotherOccupation { get; set; }
         public Nullable<System.DateTime> DateOfBirth { get; set; }
         public Nullable<System.DateTime> ParentsAnniversary { get; set; }
         public string Sex { get; set; }
@@ -51,7 +45,7 @@ namespace WebAPI3.Models
         public string CurrentAddress { get; set; }
         public string PermanentAddress { get; set; }
         public string ContactNo { get; set; }
-        public Nullable<int> MobileNo { get; set; }
+        public string MobileNo { get; set; }
         public string Email { get; set; }
         public Nullable<bool> IsPhysicallyChallenged { get; set; }
         public Nullable<long> MediumOfInstruction { get; set; }
@@ -78,14 +72,25 @@ namespace WebAPI3.Models
         public Nullable<long> CreatedBy { get; set; }
         public Nullable<bool> IsLead { get; set; }
         public long OrgId { get; set; }
+        public string FatherTitle { get; set; }
+        public string MotherTitle { get; set; }
+        public string FatherOccupation { get; set; }
+        public string MotherOccupation { get; set; }
+        public string FatherContactNo { get; set; }
+        public string MotherContactNo { get; set; }
+        public Nullable<System.DateTime> LeadCreationDate { get; set; }
+        public string LeadRejectReason { get; set; }
         public virtual ICollection<CounsellorNote> CounsellorNotes { get; set; }
         public virtual ICollection<tblAttendance> tblAttendances { get; set; }
         public virtual ICollection<tblAttendanceHourly> tblAttendanceHourlies { get; set; }
         public virtual ICollection<tblBatchAdmission> tblBatchAdmissions { get; set; }
         public virtual ICollection<tblBatchAdmissionArchive> tblBatchAdmissionArchives { get; set; }
         public virtual ICollection<tblBatchAdmissionPast> tblBatchAdmissionPasts { get; set; }
+        public virtual tblDiscountType tblDiscountType { get; set; }
         public virtual ICollection<tblExamMark> tblExamMarks { get; set; }
         public virtual ICollection<tblLeadFollowUp> tblLeadFollowUps { get; set; }
+        public virtual tblOrg tblOrg { get; set; }
+        public virtual tblStudentCategory tblStudentCategory { get; set; }
         public virtual ICollection<tblStudentAttachment> tblStudentAttachments { get; set; }
         public virtual ICollection<tblStudentFeePaidHeader> tblStudentFeePaidHeaders { get; set; }
         public virtual ICollection<tblStudentQualification> tblStudentQualifications { get; set; }

@@ -44,7 +44,9 @@ namespace WebAPI3.Controllers
         { 
             try
             {
+                DuplicateAttendance DuplicateAttendanceObj = new DuplicateAttendance();
                 var datee = ConvertToDateTime(scanDateTime);
+                var NowDate = new DateTime(datee.Year, datee.Month, datee.Day);
                 string[] arrlong=null;
                 if (StudentId.Contains(','))
                 {
@@ -54,21 +56,80 @@ namespace WebAPI3.Controllers
                 {
                     arrlong = new string[] { StudentId};
                 }
-                   
-                foreach (var temp in arrlong)
+                DuplicateAttendanceObj.DuplicatesList = new List<Dupicates>();
+              
+                if (IsCheckIn == true)
                 {
-                    DbContext.tblAttendanceHourlies.Add(new tblAttendanceHourly()
+                    foreach (var temp in arrlong)
                     {
-                        StudentId = Convert.ToInt64(temp),
-                        IsPickUp = IsCheckIn,
-                        IsAttendance = true,
-                        Time = new TimeSpan(datee.Hour, datee.Minute, datee.Second),
-                        Date = new DateTime(datee.Year, datee.Month, datee.Day),
-                        OrgId = OrgId
-                    });
-                    DbContext.SaveChanges();
+                        long StudId = Convert.ToInt64(temp);
+                        var DuplicateCheckIn = DbContext.tblAttendanceHourlies.Where(x => x.OrgId == OrgId && x.StudentId == StudId && x.Date == NowDate && x.IsAttendance == true).OrderByDescending(x => x.Time).Take(1).Select(y => y).FirstOrDefault();
+                        if(DuplicateCheckIn == null || DuplicateCheckIn.IsPickUp == false)
+                        {
+                            DbContext.tblAttendanceHourlies.Add(new tblAttendanceHourly()
+                            {
+                                StudentId = Convert.ToInt64(temp),
+                                IsPickUp = IsCheckIn,
+                                IsAttendance = true,
+                                Time = new TimeSpan(datee.Hour, datee.Minute, datee.Second),
+                                Date = new DateTime(datee.Year, datee.Month, datee.Day),
+                                OrgId = OrgId
+                            });
+                            DbContext.SaveChanges();
+                        }
+                        else
+                        {
+                            var StudnetDuplicate = new Dupicates();
+                            DuplicateAttendanceObj.DuplicatesList.Add(StudnetDuplicate);
+                            StudnetDuplicate.StudentId = Convert.ToInt64(temp);
+                            DuplicateAttendanceObj.ReasonDuplicate = "Already Checked In";
+                        }
+                    }
+                    return Json(new { status = true, DuplicateAttendanceObj }, JsonRequestBehavior.AllowGet);
                 }
-                    return Json(new{ status = true}, JsonRequestBehavior.AllowGet);
+                else
+                {
+                    foreach (var temp in arrlong)
+                    {
+                        long StudId = Convert.ToInt64(temp);
+                        var Dup = DbContext.tblAttendanceHourlies.Where(x => x.OrgId == OrgId && x.StudentId == StudId && x.Date == NowDate && x.IsAttendance == true && x.IsPickUp == true).OrderByDescending(x => x.Time).Take(1).Select(y => y).FirstOrDefault();
+                        if(Dup != null)
+                        {
+                            var d = new TimeSpan(Dup.Time.Hours, Dup.Time.Minutes, Dup.Time.Seconds);
+                            var e = new TimeSpan(datee.Hour, datee.Minute, datee.Second);
+                            TimeSpan f = e.Subtract(d);
+                            if(f.Hours >= 2)
+                            {
+                                DbContext.tblAttendanceHourlies.Add(new tblAttendanceHourly()
+                                {
+                                    StudentId = Convert.ToInt64(temp),
+                                    IsPickUp = IsCheckIn,
+                                    IsAttendance = true,
+                                    Time = new TimeSpan(datee.Hour, datee.Minute, datee.Second),
+                                    Date = new DateTime(datee.Year, datee.Month, datee.Day),
+                                    OrgId = OrgId
+                                });
+                                DbContext.SaveChanges();
+                            }
+                            else
+                            {
+                                var StudnetDuplicate = new Dupicates();
+                                DuplicateAttendanceObj.DuplicatesList.Add(StudnetDuplicate);
+                                StudnetDuplicate.StudentId = Convert.ToInt64(temp);
+                                DuplicateAttendanceObj.ReasonDuplicate = "Below 2 Hrs Checkin";
+                            }
+                        }
+                        else
+                        {
+                            var StudnetDuplicate = new Dupicates();
+                            DuplicateAttendanceObj.DuplicatesList.Add(StudnetDuplicate);
+                            StudnetDuplicate.StudentId = Convert.ToInt64(temp);
+                            DuplicateAttendanceObj.ReasonDuplicate = "Not Checkin can't CheckOut";
+                        }
+                    }
+                    return Json(new { status = true, DuplicateAttendanceObj }, JsonRequestBehavior.AllowGet);
+                }
+                   
             }
             catch (Exception e)
             {
@@ -77,9 +138,10 @@ namespace WebAPI3.Controllers
 
         }
 
-        public JsonResult SaveTransport (long OrgId,string StudentId,string scanDateTime,bool IsPickUp)
+        public JsonResult SaveTransport (long OrgId,string StudentId,string scanDateTime,bool IsPickUp,string Position)
         {
             string Status = "";
+            string Place = "";
             try
             {
                 var datee = ConvertToDateTime(scanDateTime);
@@ -108,15 +170,33 @@ namespace WebAPI3.Controllers
 
                     var SId = Convert.ToInt64(temp);
                     var Student = DbContext.tblStudents.Where(x => x.Id == SId).Select(y => y).FirstOrDefault();
-                    string Number = "+91" + Student.ContactNo;
+                    string Number = "+91" + Student.FatherContactNo;
                     string Username = "sftg-softserve";
                     string Password = "soft123";
                     string Source = "SSGBLR";
-                    if (IsPickUp == true) { Status = "Pickedup"; }
-                    if (IsPickUp == false) { Status = "Dropped"; }
-
-                    string Content = "Its Here By To Notify Your Kid Master. " + Student.FirstName + " " + Student.MiddleName + " " + Student.LastName + " " + "Has " + Status;
-
+                    if(Position == "School")
+                    {
+                        if(IsPickUp == true)
+                        {
+                            Status = "This message is to notify your kid "+ Student.FirstName + " " + Student.MiddleName + " " + Student.LastName +"has boarded the vehicle for school.";
+                        }
+                        else if(IsPickUp == false)
+                        {
+                            Status = "This message is to notify your kid "+ Student.FirstName + " " + Student.MiddleName + " " + Student.LastName + "has reached the school.";
+                        }
+                    }
+                    else if (Position == "Home")
+                    {
+                        if (IsPickUp == true)
+                        {
+                            Status = "This message is to notify your kid "+ Student.FirstName + " " + Student.MiddleName + " " + Student.LastName + "has boarded the vehicle for home.";
+                        }
+                        else if (IsPickUp == false)
+                        {
+                            Status = "This message is to notify your kid "+ Student.FirstName + " " + Student.MiddleName + " " + Student.LastName + "has reached the home.";
+                        }
+                    }
+                    string Content = Status;
                     string strUrl = "http://103.16.101.52:8080/sendsms/bulksms?username=" + Username + "&password=" + Password + "&type=0&dlr=1&destination=" + Number + "&source=" + Source + "&message=" + Content;
                     HttpWebRequest _createRequest = (HttpWebRequest)WebRequest.Create(strUrl);
                     HttpWebResponse response = (HttpWebResponse)_createRequest.GetResponse();

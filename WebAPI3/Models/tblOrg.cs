@@ -55,6 +55,8 @@ namespace WebAPI3.Models
             this.tblExamMarks = new List<tblExamMark>();
             this.tblExamSchedules = new List<tblExamSchedule>();
             this.tblExamTypes = new List<tblExamType>();
+            this.tblExpenseCategories = new List<tblExpenseCategory>();
+            this.tblExpenseDetails = new List<tblExpenseDetail>();
             this.tblFeeInstallmentDetails = new List<tblFeeInstallmentDetail>();
             this.tblFeeItemDetails = new List<tblFeeItemDetail>();
             this.tblFeeLedgerGroups = new List<tblFeeLedgerGroup>();
@@ -107,6 +109,7 @@ namespace WebAPI3.Models
             this.tblStockGroups = new List<tblStockGroup>();
             this.tblStockItems = new List<tblStockItem>();
             this.tblStreams = new List<tblStream>();
+            this.tblStudents = new List<tblStudent>();
             this.tblStudentAttachments = new List<tblStudentAttachment>();
             this.tblStudentCategories = new List<tblStudentCategory>();
             this.tblStudentCustomizes = new List<tblStudentCustomize>();
@@ -205,6 +208,8 @@ namespace WebAPI3.Models
         public virtual ICollection<tblExamMark> tblExamMarks { get; set; }
         public virtual ICollection<tblExamSchedule> tblExamSchedules { get; set; }
         public virtual ICollection<tblExamType> tblExamTypes { get; set; }
+        public virtual ICollection<tblExpenseCategory> tblExpenseCategories { get; set; }
+        public virtual ICollection<tblExpenseDetail> tblExpenseDetails { get; set; }
         public virtual ICollection<tblFeeInstallmentDetail> tblFeeInstallmentDetails { get; set; }
         public virtual ICollection<tblFeeItemDetail> tblFeeItemDetails { get; set; }
         public virtual ICollection<tblFeeLedgerGroup> tblFeeLedgerGroups { get; set; }
@@ -257,6 +262,7 @@ namespace WebAPI3.Models
         public virtual ICollection<tblStockGroup> tblStockGroups { get; set; }
         public virtual ICollection<tblStockItem> tblStockItems { get; set; }
         public virtual ICollection<tblStream> tblStreams { get; set; }
+        public virtual ICollection<tblStudent> tblStudents { get; set; }
         public virtual ICollection<tblStudentAttachment> tblStudentAttachments { get; set; }
         public virtual ICollection<tblStudentCategory> tblStudentCategories { get; set; }
         public virtual ICollection<tblStudentCustomize> tblStudentCustomizes { get; set; }

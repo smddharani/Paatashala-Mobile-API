@@ -16,6 +16,7 @@ namespace WebAPI3.Models
         public Nullable<decimal> StandardRate { get; set; }
         public decimal Amount { get; set; }
         public long OrgId { get; set; }
+        public Nullable<bool> isBilling { get; set; }
         public virtual tblBatch tblBatch { get; set; }
         public virtual tblCourse tblCourse { get; set; }
         public virtual tblFeeItemDetail tblFeeItemDetail { get; set; }

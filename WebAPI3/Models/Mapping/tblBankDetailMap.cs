@@ -20,6 +20,7 @@ namespace WebAPI3.Models.Mapping
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Name).HasColumnName("Name");
             this.Property(t => t.OrgId).HasColumnName("OrgId");
+            this.Property(t => t.isBilling).HasColumnName("isBilling");
 
             // Relationships
             this.HasRequired(t => t.tblOrg)

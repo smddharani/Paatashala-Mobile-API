@@ -20,23 +20,11 @@ namespace WebAPI3.Models.Mapping
             this.Property(t => t.LastName)
                 .HasMaxLength(50);
 
-            this.Property(t => t.FatherTitle)
-                .HasMaxLength(50);
-
             this.Property(t => t.FatherName)
                 .HasMaxLength(50);
 
             this.Property(t => t.FatherEmail)
                 .HasMaxLength(500);
-
-            this.Property(t => t.FatherContactNo)
-                .HasMaxLength(50);
-
-            this.Property(t => t.FatherOccupation)
-                .HasMaxLength(50);
-
-            this.Property(t => t.MotherTitle)
-                .HasMaxLength(50);
 
             this.Property(t => t.MotherName)
                 .HasMaxLength(50);
@@ -44,16 +32,13 @@ namespace WebAPI3.Models.Mapping
             this.Property(t => t.MotherEmail)
                 .HasMaxLength(500);
 
-            this.Property(t => t.MotherContactNo)
-                .HasMaxLength(50);
-
-            this.Property(t => t.MotherOccupation)
-                .HasMaxLength(50);
-
             this.Property(t => t.Sex)
                 .HasMaxLength(50);
 
             this.Property(t => t.ContactNo)
+                .HasMaxLength(50);
+
+            this.Property(t => t.MobileNo)
                 .HasMaxLength(50);
 
             this.Property(t => t.PassportNo)
@@ -71,6 +56,24 @@ namespace WebAPI3.Models.Mapping
             this.Property(t => t.MotherQualification)
                 .HasMaxLength(200);
 
+            this.Property(t => t.FatherTitle)
+                .HasMaxLength(50);
+
+            this.Property(t => t.MotherTitle)
+                .HasMaxLength(50);
+
+            this.Property(t => t.FatherOccupation)
+                .HasMaxLength(50);
+
+            this.Property(t => t.MotherOccupation)
+                .HasMaxLength(50);
+
+            this.Property(t => t.FatherContactNo)
+                .HasMaxLength(50);
+
+            this.Property(t => t.MotherContactNo)
+                .HasMaxLength(50);
+
             // Table & Column Mappings
             this.ToTable("tblStudent");
             this.Property(t => t.Id).HasColumnName("Id");
@@ -78,18 +81,12 @@ namespace WebAPI3.Models.Mapping
             this.Property(t => t.MiddleName).HasColumnName("MiddleName");
             this.Property(t => t.LastName).HasColumnName("LastName");
             this.Property(t => t.StudentId).HasColumnName("StudentId");
-            this.Property(t => t.FatherTitle).HasColumnName("FatherTitle");
             this.Property(t => t.FatherName).HasColumnName("FatherName");
             this.Property(t => t.FatherEmail).HasColumnName("FatherEmail");
-            this.Property(t => t.FatherContactNo).HasColumnName("FatherContactNo");
             this.Property(t => t.FatherDOB).HasColumnName("FatherDOB");
-            this.Property(t => t.FatherOccupation).HasColumnName("FatherOccupation");
-            this.Property(t => t.MotherTitle).HasColumnName("MotherTitle");
             this.Property(t => t.MotherName).HasColumnName("MotherName");
             this.Property(t => t.MotherEmail).HasColumnName("MotherEmail");
-            this.Property(t => t.MotherContactNo).HasColumnName("MotherContactNo");
             this.Property(t => t.MotherDOB).HasColumnName("MotherDOB");
-            this.Property(t => t.MotherOccupation).HasColumnName("MotherOccupation");
             this.Property(t => t.DateOfBirth).HasColumnName("DateOfBirth");
             this.Property(t => t.ParentsAnniversary).HasColumnName("ParentsAnniversary");
             this.Property(t => t.Sex).HasColumnName("Sex");
@@ -128,6 +125,26 @@ namespace WebAPI3.Models.Mapping
             this.Property(t => t.CreatedBy).HasColumnName("CreatedBy");
             this.Property(t => t.IsLead).HasColumnName("IsLead");
             this.Property(t => t.OrgId).HasColumnName("OrgId");
+            this.Property(t => t.FatherTitle).HasColumnName("FatherTitle");
+            this.Property(t => t.MotherTitle).HasColumnName("MotherTitle");
+            this.Property(t => t.FatherOccupation).HasColumnName("FatherOccupation");
+            this.Property(t => t.MotherOccupation).HasColumnName("MotherOccupation");
+            this.Property(t => t.FatherContactNo).HasColumnName("FatherContactNo");
+            this.Property(t => t.MotherContactNo).HasColumnName("MotherContactNo");
+            this.Property(t => t.LeadCreationDate).HasColumnName("LeadCreationDate");
+            this.Property(t => t.LeadRejectReason).HasColumnName("LeadRejectReason");
+
+            // Relationships
+            this.HasOptional(t => t.tblDiscountType)
+                .WithMany(t => t.tblStudents)
+                .HasForeignKey(d => d.DiscountType);
+            this.HasRequired(t => t.tblOrg)
+                .WithMany(t => t.tblStudents)
+                .HasForeignKey(d => d.OrgId);
+            this.HasOptional(t => t.tblStudentCategory)
+                .WithMany(t => t.tblStudents)
+                .HasForeignKey(d => d.Category);
+
         }
     }
 }

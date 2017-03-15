@@ -36,7 +36,6 @@ namespace WebAPI3.Controllers
         {
             try
             {
-                System.IO.File.AppendAllText(Server.MapPath("log.txt"), string.Format("{0} - Route:{1} Lat:{2} Long:{3}{4}", DateTime.Now, Routecode, Lattitude, Longitude, Environment.NewLine));
                 var datee = DateTime.Now;
                 db.tblGPSDatas.Add(new tblGPSData()
                 {

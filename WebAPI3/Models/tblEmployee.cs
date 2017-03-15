@@ -71,6 +71,7 @@ namespace WebAPI3.Models
         public string PermanentArea { get; set; }
         public Nullable<bool> HasLoginAccess { get; set; }
         public long OrgId { get; set; }
+        public byte[] EmployeeSignature { get; set; }
         public virtual tblDepartment tblDepartment { get; set; }
         public virtual tblDesignation tblDesignation { get; set; }
         public virtual tblOrg tblOrg { get; set; }

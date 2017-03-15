@@ -15,6 +15,7 @@ namespace WebAPI3.Models.Mapping
             this.ToTable("tblAdmissionStatusType");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Name).HasColumnName("Name");
+            this.Property(t => t.isLead).HasColumnName("isLead");
         }
     }
 }

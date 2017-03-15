@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace WebAPI3.Models
 {
-    public partial class tblDiscountType
+    public partial class tblExpenseCategory
     {
-        public tblDiscountType()
+        public tblExpenseCategory()
         {
-            this.tblStudents = new List<tblStudent>();
+            this.tblExpenseDetails = new List<tblExpenseDetail>();
         }
 
         public long Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public long OrgId { get; set; }
+        public Nullable<long> OrgId { get; set; }
         public virtual tblOrg tblOrg { get; set; }
-        public virtual ICollection<tblStudent> tblStudents { get; set; }
+        public virtual ICollection<tblExpenseDetail> tblExpenseDetails { get; set; }
     }
 }
